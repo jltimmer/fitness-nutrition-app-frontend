@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
-import ExerciseList from './components/ExerciseList'
+import ExerciseList, { Exercise } from './components/ExerciseList'
+import NewExercise from './components/NewExercise';
 
 function App() {
   const exercises_data = [
@@ -15,11 +16,12 @@ function App() {
       "notes": "palms facing towards"
   }
   ]
-  const [exercises, setExercises] = useState(exercises_data);
+  const [exercises, setExercises] = useState<Exercise[]>(exercises_data);
 
   return (
     <>
     <ExerciseList exercises={exercises} />
+    <NewExercise exercises={exercises_data} setExercises={setExercises} />
     </>
   )
 }

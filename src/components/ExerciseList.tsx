@@ -1,5 +1,5 @@
-interface Exercise {
-  id : number,
+export interface Exercise {
+  id? : number,
   name : string,
   notes : string
 }
@@ -18,7 +18,7 @@ function ExerciseList( { exercises } : Props) {
         </div>
       ))}
     </>
-  )
+  );
 }
 
 export default ExerciseList
