@@ -1,23 +1,13 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent } from 'react'
 import { Exercise } from './ExerciseList'
 
 interface Props {
-  exercises : Exercise[]
-  setExercises: any
+  handleInputChange : (e : FormEvent) => void
+  handleSubmit : (e : FormEvent) => void
+  newExercise : Exercise
 }
 
-function NewExercise( {exercises, setExercises} : Props) {
-const [newExercise, setState] = useState<Exercise>({name: "", notes: ""});
-
-function handleInputChange(e : FormEvent) {
-  const target = e.target as HTMLInputElement;
-  setState({...newExercise, [target.name]: target.value});
-}
-
-function handleSubmit(e : FormEvent) {
-  e.preventDefault();
-  setExercises([...exercises, newExercise]);
-}
+function NewExercise( { handleInputChange, handleSubmit, newExercise } : Props) {
 
   return (
     <form onSubmit={(event) => handleSubmit(event)}>
