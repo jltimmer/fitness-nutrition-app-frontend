@@ -1,23 +1,22 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import ExerciseList, { Exercise } from './components/ExerciseList'
 import NewExercise from './components/NewExercise';
+import axios from 'axios'
 
 function App() {
-  const exercises_data = [
-    {
-      "id": 1,
-      "name": "Pull-ups",
-      "notes": "palms facing away"
-  },
-  {
-      "id": 2,
-      "name": "Chin-ups",
-      "notes": "palms facing towards"
-  }
-  ]
-  const [exercises, setExercises] = useState<Exercise[]>(exercises_data);
+  const [exercises, setExercises] = useState<Exercise[]>([]);
   const [newExercise, setNewExercise] = useState<Exercise>({name: "", notes: ""})
+
+  useEffect(() => {
+    refreshExerciseList();
+    }, [])
+
+  function refreshExerciseList() {
+    axios.get('http://localhost:8000/')
+      .then((res) => setExercises(res.data))
+      .catch((err) => console.log(err))
+  };
 
   function handleInputChange(e : FormEvent) {
     const target = e.target as HTMLInputElement;
@@ -26,7 +25,9 @@ function App() {
 
     function handleSubmit(e : FormEvent) {
     e.preventDefault();
-    setExercises([...exercises, newExercise]);
+    axios.post('http://localhost:8000/', {name: newExercise.name, notes: newExercise.notes})
+      .then((res) => refreshExerciseList());
+
     setNewExercise({name: "", notes: ""});
   }
 
