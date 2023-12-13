@@ -1,5 +1,6 @@
 import { Routes, Route, Link } from 'react-router-dom'
-import Fitness from './components/Fitness';
+import FitnessPage from './components/FitnessPage';
+import NutritionPage from './components/NutritionPage';
 
 function App() {
   return (
@@ -7,17 +8,14 @@ function App() {
     {/* <nav className="navbar"> */}
     <nav>
       <Link to={'/'}>Home</Link>
-      <Link to={'/exercises'}>Exercises</Link>
+      <Link to={'/fitness'}>Fitness</Link>
       <Link to={'/nutrition'}>Nutrition</Link>
     </nav>
 
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/exercises" element={<Fitness />}
-      />
-      <Route path="/nutrition" element={
-        <><p>Nutrition page stub</p></>
-      } />
+      <Route path="/fitness" element={<FitnessPage />} />
+      <Route path="/nutrition" element={<NutritionPage />} />
     </Routes>
     </>
   )

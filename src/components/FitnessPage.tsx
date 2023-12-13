@@ -4,7 +4,7 @@ import NewExercise from './NewExercise';
 import axios from 'axios'
 import Modal from './Modal';
 
-function Fitness() {
+function FitnessPage() {
   const rootURL = 'http://localhost:8000/exercises/';
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const [newExercise, setNewExercise] = useState<Exercise>({name: "", notes: ""})
@@ -58,4 +58,4 @@ function Fitness() {
   )
 }
 
-export default Fitness
+export default FitnessPage
